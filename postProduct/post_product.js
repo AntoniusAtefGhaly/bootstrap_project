@@ -26,4 +26,3 @@ form.addEventListener('submit',(e)=>{
     })
 });
 
-// adding to the main branch
