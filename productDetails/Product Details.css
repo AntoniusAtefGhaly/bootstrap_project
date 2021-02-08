@@ -1,0 +1,27 @@
+
+@font-face {
+    font-family: CuteLittleSheep;
+    src: url(Cute\ Little\ Sheep.ttf);
+     }
+
+.s{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    /* color: rgb(80, 3, 7); */
+    font-size: 20px;
+}
+
+.container{
+    font-family:'Times New Roman', Times, serif;
+    /* color: rgb(129, 6, 12); */
+    font-size: 20px;
+}
+
+#bigContainer{
+    background-image: url("./bg3.jpg");
+}
+
+#bodyContainer{
+    background-color: rgb(247, 242, 236);
+    height: auto;
+    width: auto;
+}
