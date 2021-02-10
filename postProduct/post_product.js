@@ -6,10 +6,11 @@ localID = localStorage.getItem('user_id');
 // find the user name of that id 
 db.collection('user').get().then((snap)=>{
     snap.docs.forEach(doc=>{
-        if(doc.id = localID){
+        if(doc.id == localID){
             // console.log(doc.data().Name)
             userID = doc.data().Name; 
             form.product_user.value = userID;
+
         }
     })
 });
