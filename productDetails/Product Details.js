@@ -121,4 +121,3 @@ db.collection("posting").where('product_color', '==', 'Black').get().then((snaps
         getOfferType(doc);
     });
 });
-
