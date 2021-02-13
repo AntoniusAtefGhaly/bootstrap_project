@@ -37,7 +37,7 @@
                         <a class="nav-link" href="#">
                             <i class="icon fa fa-shopping-cart " style="color:white; font-size: xx-large;"></i></a>
                     </li>
-                    <li class="nav-item dropdown px-2  py-3 align-self-center">
+                    <!-- <li class="nav-item dropdown px-2  py-3 align-self-center">
                         <a class="nav-link dropdown-toggle" href="#" role="button" id="dd-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class=" icon fa fa-bell " style="color:white; font-size: xx-large;"></i>
                         </a>
@@ -46,14 +46,14 @@
                             <a class="dropdown-item" href="#">rent request</a>
                             <a class="dropdown-item" href="#">change request</a>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item px-2  py-3 align-self-center">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="../postProduct/post_product.html">
                             <i class=" icon fa fa-plus-circle pr-1" style="color:white; font-size: xx-large;"></i> <p style="display: inline-block; font-size: large;">post a product</p></a>
                     </li>
                 </ul>
                     <a class="nav-link" href="#">
-                    <img src="me.jpg" class="rounded-circle" style="height: 40px;">    
+                    <img src="me.jfif" class="rounded-circle" style="height: 40px;">    
                     </a>
             </div>
         </nav>
@@ -63,51 +63,37 @@
                 <!-- profile section  -->
                 <div class=" col-md-4 bg-white px-0">
                     <div class=" card bg-white  shadow ml-0 mr-2 mt-3 px-3 py-3">
-                        <h6 class="text-center">Antonius Atef</h3>
-                        <img src="me.jpg" class="align-self-center rounded-circle" style="width: 100px;">
+                        <h6 id="user-name" class="text-center"></h3>
+                        <img src="me.jfif" class="align-self-center rounded-circle" style="width: 100px;">
                         <hr>
                         <ul style="list-style: none;">
-                            <li ><i class="fa fa-phone px-2" style="color: #39505c;"></i>01225981295 </li>
-                            <li><i class="fa fa-home px-2" style="color: #39505c;"></i>13 st -taha hussein- minia </li>
-                            <li><a href="#"><i class="fa fa-edit px-2" style="color: #39505c;"></i>edit your data </li></a>
+                            <li id="user-phone" ><i class="fa fa-phone px-2" style="color: #39505c;"></i> </li>
+                            <li id="user-email"><i  class="fa fa-home px-2" style="color: #39505c;"></i></li>
+                            <li ><a href="#"><i class="fa fa-edit px-2" style="color: #39505c;"></i>edit your data </li></a>
                         </ul>
                         <br><br>        
                     </div>  
                 </div>
                 <!-- products section -->
-                <div class=" col-md-8 bg-white  py-3">
-                    <div class="row caed rounded-circle py-3">
+                <div id="products" class=" col-md-8 bg-white py-3">
+                    <div id="product-card-0" class=" row caed rounded-circle py-3">
                         <div class="card-header col-md-6 col-12 border-0">
-                            <img id="product-img" style="width: 100%;" src="car3.jfif" alt="">
+                            <img id="product-img-0" style="width: 100%;" src="" alt="">
                         </div>
-                        <div class="card-header col-md-6 col-12 py-3 ">
-                            <h5 id="product-title"> car</h5>
+                        <div class="card-header col-md-6 col-12 px-1 ">
+                            <h5 id="product-title-0"> </h5>
                             <ul style="list-style: none;">
-                                <li ><i class="fa faa-phone px-1" style="color: #39505c;"></i> <span id="product-description" ></span> </li>
-                                <li><i class="fa faa-home px-1" style="color: #39505c;"></i>offers <span id="product-description" ></span> </li>
+                                <li id="product-description-0" ><i class="fa fa-info px-1" style="color: #39505c;"></i> </li>
+                                <li id="product-color-0"><i class="fa fa-paint-brush px-1" style="color: #39505c;"></i> </li>
+                                <li id="product-price-0"><i class="fa fa-dollar px-1" style="color: #39505c;"></i> </li>
+                                <li id="product-type-0"><i class="fa fa-list-alt px-1" style="color: #39505c;"></i> </li>
+                                <li id="product-category-0"><i class="fa fa-bookmark px-1" style="color: #39505c;"></i> </li>
                             </ul>   
                             <br><br> 
                         </div>
                     </div>
-                    <!-- <div class="card flex-row flex-wrap">
-                        <div class="card-header col-md-4 border-0">
-                            <img src="car3.jfif" alt="">
-                        </div>
-                        <div class="card-block col-md-4 px-2 "style="width:100%;">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Description</p>
-                            <a href="#" class="btn btn-primary">BUTTON</a>
-                        </div>
-                        <div class="card-footer w-100 text-muted">
-                            FOOTER
-                        </div>
-                    </div> -->
-
-
-
-
                 </div>
-                              
+                            
             </div>
             
         </div>
@@ -119,7 +105,7 @@
         <footer class="container-fluid" style="color: white; background-color: #314753; height: 50px;">
         power by me
         </footer> -->
-        <footer  class ="footer row-footer footer-dark" style="background-color: #4d636f;">
+        <footer  class ="footer row-footer footer-dark py-3" style="background-color: #4d636f;">
             <div class="container">
                 <div class="row ">             
                     <div class ="col-4 offset-1 col-sm-2">
