@@ -1,14 +1,14 @@
 const form = document.getElementById('form_id');
-localStorage.setItem("user_id",'3FJdT681qROPRUZ8bCN5');
+// localStorage.setItem("user_id",'3FJdT681qROPRUZ8bCN5');
 var userID;
 var localID;
-localID = localStorage.getItem('user_id');
+localID = localStorage.getItem('user_current');
 // find the user name of that id 
 db.collection('user').get().then((snap)=>{
     snap.docs.forEach(doc=>{
         if(doc.id == localID){
             // console.log(doc.data().Name)
-            userID = doc.data().Name; 
+            userID = doc.data().user_fullName; 
             form.product_user.value = userID;
 
         }
@@ -26,6 +26,7 @@ db.collection('posting').get().then((snapshot)=>{
 
 // Posting the data we add from the form to the firestore data base at posting collection
 form.addEventListener('submit',(e)=>{
+    e.preventDefault();
    var opt = document.getElementById("processType");
     var x = [];
     for(var op of opt.options){
@@ -33,6 +34,7 @@ form.addEventListener('submit',(e)=>{
             x.push(op.value)
         }
     }
+
 
     db.collection('posting').add({
         product_name: form.product_name.value,
@@ -46,5 +48,7 @@ form.addEventListener('submit',(e)=>{
         user_id: localID
 
     })
+    window.location.replace("http://localhost:5500/dashboard/dashboard.html");
+
 });
 
