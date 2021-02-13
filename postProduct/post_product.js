@@ -10,7 +10,6 @@ db.collection('user').get().then((snap)=>{
             // console.log(doc.data().Name)
             userID = doc.data().Name; 
             form.product_user.value = userID;
-
         }
     })
 });
