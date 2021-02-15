@@ -25,8 +25,9 @@ var offer_type;
 // const customer_id = localStorage.getItem("user_id");
 const customer_id = localStorage.getItem("user_current");
 // localStorage.setItem("product_id", "QuuZQv4NLRRfgi2Mrc7Z");
-localStorage.setItem("product_id", "BFkWDHIlWPMC8nXy8JWz");
-const pID = localStorage.getItem("product_id");
+//localStorage.setItem("product_id", "BFkWDHIlWPMC8nXy8JWz");
+const pID = localStorage.getItem("ProductID");
+console.log(pID);
 // k7ErU5PTGuTYaGSQ9nfS
 // jvLis4CZK0mrNKjioIYf
 

@@ -4,11 +4,11 @@ var userID;
 var localID;
 localID = localStorage.getItem('user_current');
 // find the user name of that id 
-db.collection('user').get().then((snap)=>{
-    snap.docs.forEach(doc=>{
-        if(doc.id == localID){
+db.collection('user').get().then((snap) => {
+    snap.docs.forEach(doc => {
+        if (doc.id == localID) {
             // console.log(doc.data().Name)
-            userID = doc.data().user_fullName; 
+            userID = doc.data().user_fullName;
             form.product_user.value = userID;
         }
     })
@@ -16,7 +16,7 @@ db.collection('user').get().then((snap)=>{
 
 
 // getting the data from the fireStore and show it in the console, "just for checking.."
-db.collection('posting').get().then((snapshot)=>{
+db.collection('posting').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         console.log(doc.data());
         // console.log(doc.data().product_name)
@@ -24,12 +24,12 @@ db.collection('posting').get().then((snapshot)=>{
 })
 
 // Posting the data we add from the form to the firestore data base at posting collection
-form.addEventListener('submit',(e)=>{
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-   var opt = document.getElementById("processType");
+    var opt = document.getElementById("processType");
     var x = [];
-    for(var op of opt.options){
-        if(op.selected){
+    for (var op of opt.options) {
+        if (op.selected) {
             x.push(op.value)
         }
     }

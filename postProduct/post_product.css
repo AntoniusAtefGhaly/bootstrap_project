@@ -37,10 +37,11 @@ body{
 
 }
 
-.center h1 {
+#postHeader {
     text-align: center;
     padding: 0 0 20px 0;
     border-bottom: 1px solid silver;
+    width: 80%;
 }
 
 .center form{
