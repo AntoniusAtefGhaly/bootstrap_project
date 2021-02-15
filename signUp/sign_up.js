@@ -9,5 +9,5 @@
          user_fullName: form.user_full_name.value,
          user_phoneNumber: form.user_phone.value
      });
-     window.location.replace("http://localhost:5500/signIn/sign_in.html");
+     window.location.replace("/ES6-BootstrapNewProject/bootstrap_project/signIn/sign_in.html");
     });

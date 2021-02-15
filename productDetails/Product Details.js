@@ -1,5 +1,5 @@
+// Getting HTML Elements 
 const productList = document.getElementById("product-details");
-
 const image = document.getElementById("img");
 const name = document.getElementById("name");
 const color = document.getElementById("color");
@@ -10,36 +10,92 @@ const category = document.getElementById("cat");
 const productType = document.getElementById("pType");
 const type = document.getElementById("type");
 const offerSection = document.getElementById("offerSection");
+const exImage = document.getElementById("ImageUrl");
+const exType = document.getElementById("pExchangeType");
+const exDescription = document.getElementById("pExchangeDesc");
+const secretID = document.getElementById("secretID");
 
-// function renderProduct(doc){
-//     image.src=doc.data().image;
-//     color.innerHTML+=doc.data().color;
-//     size.innerHTML+=doc.data().size;
-//     price.innerHTML+=doc.data().price;
-//     sellerID.innerHTML+=doc.data().sellerID;
-//     description.innerHTML+=doc.data().description;  
-//     type.innerHTML+=doc.data().processType;  
-// }
+// Variables
+var user_id;
+var user_name;
+var offer_type;
 
+
+//Getting Customer Id
+// const customer_id = localStorage.getItem("user_id");
+const customer_id = localStorage.getItem("user_current");
+// localStorage.setItem("product_id", "QuuZQv4NLRRfgi2Mrc7Z");
+localStorage.setItem("product_id", "BFkWDHIlWPMC8nXy8JWz");
+const pID = localStorage.getItem("product_id");
+// k7ErU5PTGuTYaGSQ9nfS
+// jvLis4CZK0mrNKjioIYf
+
+// //Getting Product Data
+// db.collection("posting").doc(pID).get().then((doc) => {
+//     if (doc.exists) {
+//         user_id = doc.data().user_ID;
+//         renderProduct(doc);
+//         getOfferType(doc);
+//     } else {
+//         // doc.data() will be undefined in this case
+//         console.log("No such document!");
+//     }
+// }).catch((error) => {
+//     console.log("Error getting document:", error);
+// });
+
+//#region Getting Product Data {Sherif}
+
+db.collection("posting").doc(pID).get().then((doc) => {
+    if (doc.exists) {
+        debugger;
+        renderProduct(doc);
+        getOfferType(doc);
+        return user_id = doc.data().user_id;
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).then((user_id) => {
+    //Getting User Name
+    // const user_id=localStorage.getItem("user_id");
+    db.collection("user").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            // debugger;
+            if (doc.id == user_id) {
+                user_name = doc.data().user_fullName;
+                seller.innerHTML += user_name;
+                // console.log(user_name);
+            };
+        });
+    });
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+
+//#endregion
+
+
+
+// Setting Data
 function renderProduct(doc) {
+    // debugger;
     image.src = doc.data().product_image;
     name.innerHTML += doc.data().product_name;
     color.innerHTML += doc.data().product_color;
     price.innerHTML += doc.data().product_price;
-    seller.innerHTML += doc.data().product_user;
     description.innerHTML += doc.data().product_desc;
     category.innerHTML += doc.data().product_category;
     productType.innerHTML += doc.data().product_type;
-    // type.innerHTML += doc.data().process_type;
 }
 
+// Getting Offer Types To Choose From
 function getOfferType(doc) {
-    // debugger;
     var pArr = doc.data().process_type;
     for (let p = 0; p < pArr.length; p++) {
         var b = document.createElement("button");
         b.className = "btn btn-dark";
-        if (pArr[p] == "sell") {
+        if (pArr[p] == "sell" || pArr[p] == "Sell") {
             b.textContent = "Buy";
         }
         else {
@@ -56,68 +112,74 @@ function getOfferType(doc) {
     exchangeProduct();
 }
 
+// OnPressing Exchange
 function exchangeProduct() {
-    // debugger;
     for (let i = 0; i < offerSection.querySelectorAll("button").length; i++) {
         offerSection.querySelectorAll("button")[i].onclick = function () {
-            if (this.id == "exchange" || this.id=="Exchange") {
-                this.setAttribute("data-toggle","modal");
-                this.setAttribute("data-target","#myModal");
+            if (this.id == "exchange" || this.id == "Exchange") {
+                this.setAttribute("data-toggle", "modal");
+                this.setAttribute("data-target", "#myModal");
+                offer_type = 'exchange';
+            }
+            else if (this.id == "sell" || this.id == "Sell") {
+                this.setAttribute("data-toggle", "modal");
+                this.setAttribute("data-target", "#myModal2");
+                offer_type = 'sell';
             }
         }
     }
 }
 
-//#region bla
-//create element and render product
-// function renderProduct(doc){   
-//     let li=document.createElement("li");
-//     let image=document.createElement("img");
-//     let color=document.createElement("div");
-//     let size=document.createElement("div");
-//     let price=document.createElement("div");
-//     // let madeIn=document.createElement("div");
-//     let sellerID=document.createElement("div");
-//     let description=document.createElement("div");
-//     // let brand=document.createElement("div");
-//     // let gender=document.createElement("div");
+// Confirm Offer
+function confirmExchange() {
 
-//     li.setAttribute("data-id", doc.id);
-//     image.src=doc.data().image;
-//     image.width=300;
-//     image.height=400;
-//     color.textContent=doc.data().color;
-//     size.textContent=doc.data().size;
-//     price.textContent=doc.data().price;
-//     // madeIn.textContent=doc.data().madeIn;
-//     sellerID.textContent=doc.data().sellerID;
-//     description.textContent=doc.data().description;
-//     // brand.textContent=doc.data().brand;
-//     // gender.textContent=doc.data().gender;
+    //Confirm when exchange
+    if (offer_type == 'exchange')
+        db.collection('offer').add({
+            exchange_type: exType.value,
+            exchange_image: exImage.value,
+            exchange_description: exDescription.value,
+            customer_id: customer_id,
+            offer_type: offer_type
+        }).then((docRef) => {
+            // console.log(docRef.id);
+            return secretID.innerHTML = docRef.id;
+        }).then((secID) => {
+            try {
+                db.collection('posting').doc(pID).update({
+                    offersArray: firebase.firestore.FieldValue.arrayUnion(secID)
+                });
+            }
+            catch {
+                db.collection('posting').doc(pID).add({
+                    offersArray: [secID]
+                });
+            };
+        }).then(() => {
+            alert("Your Offer has been confirmed ☻");
+        });
 
-//     li.appendChild(image);
-//     // li.innerHTML="Color: ";
-//     li.appendChild(color);
-//     // li.innerHTML="Size: ";
-//     li.appendChild(size);
-//     // li.innerHTML="Price: ";
-//     li.appendChild(price);
-//     // li.appendChild(brand);
-//     // li.appendChild(gender);
-//     // li.appendChild(madeIn);
-//     // li.innerHTML="Seller ID: ";
-//     li.appendChild(sellerID);
-//     // li.innerHTML="Description: ";
-//     li.appendChild(description);
-//     productList.appendChild(li);
-// }
-//#endregion
-
-//getting data
-
-db.collection("posting").where('product_color', '==', 'Black').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        renderProduct(doc);
-        getOfferType(doc);
-    });
-});
+    //Confirm when sell
+    else if (offer_type == 'sell') {
+        db.collection('offer').add({
+            customer_id: customer_id,
+            offer_type: offer_type
+        }).then((docRef) => {
+            // console.log(docRef.id);
+            return secretID.innerHTML = docRef.id;
+        }).then((secID) => {
+            try {
+                db.collection('posting').doc(pID).update({
+                    offersArray: firebase.firestore.FieldValue.arrayUnion(secID)
+                });
+            }
+            catch {
+                db.collection('posting').doc(pID).add({
+                    offersArray: [secID]
+                });
+            };
+        }).then(() => {
+            alert("Your Offer has been confirmed ☻");
+        });
+    };
+};
