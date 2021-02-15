@@ -15,11 +15,11 @@ body{
 
 .Search-Categories {
     background: #fff;
-    position: absolute;
+    /* position: ; */
     top: 10%;
     left: 50%;
     width: 500;
-    transform: translate(-50%,-40%);
+    /* transform: translate(-50%,-40%); */
     }
     
     input {
