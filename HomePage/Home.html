@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Home </title>
+    <meta name="viewport" content="width=device-width, intial-scale">
+    <!--Link CSS-->
+    <link rel="stylesheet" href="Style.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!--Link of Data Base -->
+    <script sre=<script src="https://kit.fontawesome.com/581acaa7c2.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+  
+    
+</head>
+
+<body>
+
+    <div class="Search-Categories">
+        <form>
+              <input list="cat_search" id="catList" placeholder="Type......">
+              <input type="submit"  id="btn_search" value="Search">
+            </form>
+              <datalist id="cat_search">
+                  <option value="Car"></option>
+                  <option value="Clothes"></option>
+                  <option value="Animals"></option>
+                  <option value="Electronics"></option>
+                  <option value="Furniture"></option>
+              </datalist>
+    </div>
+
+    <div class="main-container">
+        <h2>Categories</h2>
+        <div class="filter-container">
+            <div class="category-head" id="category">
+                <ul>
+                   <!-- <div class="category-title active" id="Cars" onclick="saveData()">
+                        <li>Cars</li> <a href="https://www.w3schools.com"></a>-->
+                       
+                         <button><li>Cars</li><i class="fas fa-car" id=" cars"  class="category-title"   ></i></button>
+                    <!--</div>-->
+                    <!--<div class="category-title active" id="Clothes">
+                        <li>Clothes</li>-->
+                       
+                         <button><li>Clothes</li><i class="fas fa-tshirt" id="clothes" class="category-title active"  ></i></button>
+                    <!--</div>-->
+                    <!--<div class="category-title active" id="Animals">
+                        <li>Animals</li>-->
+                        
+                            <button><li>Animals</li><i class="fas fa-dog" id="animals" ></i></button>
+
+                    <!--</div>-->
+                   <!-- <div class="category-title active" id="Electronics">
+                        <li>Electronics</li>-->
+                        
+                            <button><li>Electronics</li><i class="fas fa-laptop-medical" id="electronics"></i></button>
+
+                    <!--</div>-->
+                    <!--<div class="category-title active" id="Fernature">
+                        <li>Fernature</li>-->
+                        
+                            <button><li>Fernature</li><i class="fas fa-couch"  id=" Fernature" ></i></button>
+                        
+                    <!--</div>-->
+                      </ul>
+                   </div>
+           
+                </div>
+                <div id="postId"   class="posts-main-container" >
+                  
+                   
+                </div>
+
+
+            </div>
+
+
+    
+
+
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   var firebaseConfig = {
+        apiKey: "AIzaSyCJQJcnq27xQo4wR3I2rki9mWnZUPH6ec8",
+        authDomain: "deal-project-282b8.firebaseapp.com",
+        projectId: "deal-project-282b8",
+        storageBucket: "deal-project-282b8.appspot.com",
+        messagingSenderId: "561524363907",
+        appId: "1:561524363907:web:d6f014d06407c4327801b6",
+        measurementId: "G-KKP3ZE4WY6"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+     //firebase.analytics();
+    const db = firebase.firestore();
+    db.settings({timestampsInSnapshots:true});
+</script>
+<script src="Script.js"></script>
+
+<!--<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyArz61GOVqGVYjA1RkTBrLJmpr0D8Yhl7U",
+    authDomain: "home-f241c.firebaseapp.com",
+    projectId: "home-f241c",
+    storageBucket: "home-f241c.appspot.com",
+    messagingSenderId: "647170198354",
+    appId: "1:647170198354:web:1a8a33bbde6029186f888b",
+    measurementId: "G-D7ZBG8NB9K"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+ firebase.analytics();
+    const db = firebase.firestore();
+    db.settings({timestampsInSnapshots:true});
+</script>-->
+
+
+</body>
+
+</html>
