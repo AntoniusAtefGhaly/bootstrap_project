@@ -11,7 +11,7 @@ form.addEventListener('submit',(e)=>{
             if (userName == doc.data().user_userName && passWord == doc.data().user_password){
                 correct = true;
                 localStorage.setItem("user_current",doc.id);
-                window.location.replace("http://localhost:5500/dashboard/dashboard.html")
+                window.location.replace("http://localhost:5500/productDetails/Product%20Details.html")
             }
             
         })
