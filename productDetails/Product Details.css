@@ -26,8 +26,8 @@ body{
 }
 
 #bodyContainer{
-    /* background-color: rgb(247, 242, 236); */
-    background-color: rgb(245, 245, 236);
+    /* background-color: rgb(245, 245, 236); */
+    background-color: gainsboro;
     /* height: 100%; */
     width: 100%;
 }

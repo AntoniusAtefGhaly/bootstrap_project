@@ -68,7 +68,7 @@ function renderDashboardOffer(doc) {
  console.log(card_1);
  d2[1].style.display = "block";
 //  d1[1].src = doc.data().product_image;
-if((doc.data().offer_type== "sell") ||(doc.data().offer_type== "exchange") ){
+if((doc.data().offer_type== "sell") ||(doc.data().offer_type== "exchange")){
     card_1[3].innerHTML = doc.data().offer_type;
     card_1[1].src = doc.data().exchange_image;
     card_1[5].innerHTML = doc.data().exchange_description;

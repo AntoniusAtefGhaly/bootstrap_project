@@ -35,7 +35,7 @@ console.log(snapshot.docs);
             processes += `[<span class="bg-light">${process}</span>] `;
 
         p_card.innerHTML = `
-        <img class="card-img-top" height="300px" style="    border-radius: 50px 20px;"
+        <img class="card-img-top" height="300px" style=" padding:10px; border-radius: 50px 20px;"
             src="${doc.data().product_image}"
             alt="${doc.data().product_category}">
         <hr class="mx-4">
