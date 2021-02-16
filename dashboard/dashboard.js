@@ -7,6 +7,7 @@ var iido="offer-card-0";
 var itm__offer;
 document.getElementById("offer-card-0").style.display = "none";
 var user_id= localStorage.getItem('user_current');
+var offer_array=[];
 //var user_id="3FJdT681qROPRUZ8bCN5";
 //y5PFonNC0CKZjYamNMT8
 const pdescription = document.getElementById("product-description-0");
@@ -27,8 +28,9 @@ function renderDashboardProduct(doc) {
         cln = itm.cloneNode(true);
         cln.id="product-card-"+parseInt(i+1);
         iid="product-card-"+parseInt(i+1);
-        document.getElementById("products").appendChild(cln);
 
+        document.getElementById("products").appendChild(cln);
+//console.log(iid);
     var c = document.getElementById(iid).childNodes;
     var d1 = c[1].childNodes;
     var d2 = c[3].childNodes;
@@ -48,6 +50,7 @@ function renderDashboardProduct(doc) {
 
 function renderDashboardOffer(doc) {
   console.log(doc.data());
+  iido="product-card-"+parseInt(i_offer+1);
 
 //     itm_offer = document.getElementById("offer-card-0");
 //     cln_offer = itm_offer.cloneNode(true);
@@ -55,8 +58,8 @@ function renderDashboardOffer(doc) {
 //     iido="offer-card-"+parseInt(i_offer+1);
 //     document.getElementById("offers").appendChild(cln_offer);
 
- var c = document.getElementById(iid).childNodes;
- 
+ var c = document.getElementById(offer_array[i_offer]).childNodes;
+ //console.log(iido);
  var d1 = c[7].childNodes;
  var d2 = d1[1].childNodes;
  var card_1= d2[1].childNodes;
@@ -68,11 +71,20 @@ function renderDashboardOffer(doc) {
  console.log(card_1);
  d2[1].style.display = "block";
 //  d1[1].src = doc.data().product_image;
-if((doc.data().offer_type== "sell") ||(doc.data().offer_type== "exchange")){
-    card_1[3].innerHTML = doc.data().offer_type;
-    card_1[1].src = doc.data().exchange_image;
-    card_1[5].innerHTML = doc.data().exchange_description;
-}
+//if((doc.data().offer_type== "sell") ||(doc.data().offer_type== "exchange") ){
+  
+    card_1[3].innerHTML += doc.data().offer_type;
+    
+    if(doc.data().exchange_description!=undefined){
+        card_1[5].innerHTML += doc.data().exchange_description;
+    }
+
+    if(doc.data().exchange_image!=undefined){
+        card_1[1].src = doc.data().exchange_image;
+    }
+    else
+    card_1[1].src="sell.jfif";
+//}
 
 // card_1[4].innerHTML = doc.data().offer_type;
 // card_1[5].innerHTML = doc.data().offer_type;
@@ -103,7 +115,7 @@ if((doc.data().offer_type== "sell") ||(doc.data().offer_type== "exchange")){
 // d2_2[7].innerHTML += doc.data().exchange_type;
 //alert(doc.data().exchange_description);
 //  d2_2[1].innerHTML += doc.data().exchange_description;   
-//i_offer++;
+i_offer++;
 }
 
 function renderUserData(doc){
@@ -122,14 +134,15 @@ db_product.collection("user").get().then((snapshot) => {
 
 
 db_product.collection("posting").where('user_id', '==', user_id).get().then((snapshot) => {
-//db_product.collection("posting").get().then((snapshot) => {
+// db_product.collection("posting").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderDashboardProduct(doc);
 //       console.log(doc.data())       
        var offer_arr=doc.data().offersArray;
        if(offer_arr!=undefined)
        {
-//        console.log(offer_arr[0]);
+           offer_array.push(iid);
+        console.log(offer_array);
 //        console.log(offer_arr.length);
 
          for(let i=0;i<offer_arr.length;i++){
