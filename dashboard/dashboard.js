@@ -5,6 +5,7 @@ var cln_offer;
 var iid="product-card-0";
 var iido="offer-card-0";
 var itm__offer;
+document.getElementById("offer-card-0").style.display = "none";
 var user_id= localStorage.getItem('user_current');
 //var user_id="3FJdT681qROPRUZ8bCN5";
 //y5PFonNC0CKZjYamNMT8
@@ -46,25 +47,64 @@ function renderDashboardProduct(doc) {
 
 
 function renderDashboardOffer(doc) {
-    itm_offer = document.getElementById("offer-card-0");
-    cln_offer = itm_offer.cloneNode(true);
-    cln_offer.id="offer-card-"+parseInt(i_offer+1);
-    iido="offer-card-"+parseInt(i_offer+1);
-    document.getElementById("offers").appendChild(cln_offer);
+  console.log(doc.data());
 
-// var c = document.getElementById(iido).childNodes;
-// var d1 = c[1].childNodes;
-// var d2 = c[3].childNodes;
+//     itm_offer = document.getElementById("offer-card-0");
+//     cln_offer = itm_offer.cloneNode(true);
+//     cln_offer.id="offer-card-"+parseInt(i_offer+1);
+//     iido="offer-card-"+parseInt(i_offer+1);
+//     document.getElementById("offers").appendChild(cln_offer);
+
+ var c = document.getElementById(iid).childNodes;
+ 
+ var d1 = c[7].childNodes;
+ var d2 = d1[1].childNodes;
+ var card_1= d2[1].childNodes;
+
+ card_1=card_1[1].childNodes;
+ var card_2= d2[3].childNodes;
+ card_2=card_2[1].childNodes;
+   
+ console.log(card_1);
+ d2[1].style.display = "block";
+//  d1[1].src = doc.data().product_image;
+if((doc.data().offer_type== "sell") ||(doc.data().offer_type== "exchange") ){
+    card_1[3].innerHTML = doc.data().offer_type;
+    card_1[1].src = doc.data().exchange_image;
+    card_1[5].innerHTML = doc.data().exchange_description;
+}
+
+// card_1[4].innerHTML = doc.data().offer_type;
+// card_1[5].innerHTML = doc.data().offer_type;
+// card_1[6].innerHTML = doc.data().offer_type;
+
+// card_1[5].innerHTML = doc.data().offer_type;
+// card_1[6].innerHTML = doc.data().offer_type;
+
+// console.log(doc.data().offer_type);
+
+ // d2_2[5].innerHTML += doc.data().exchange_image;
+//  d2_2[3].innerHTML += doc.data().product_color;
+//  d2_2[7].innerHTML += doc.data().product_type;
+//  d2_2[9].innerHTML += doc.data().product_category;
+//  d2_2[1].innerHTML += doc.data().product_desc;   
+
+//  var d1 = c[1].childNodes;
+//  console.log(d1);
+//  var d2 = c[3].childNodes;
 // var d2_2=d2[3].childNodes;
+// d1[4].innerHTML += doc.data().offer_type;
+// d1[6].innerHTML += doc.data().offer_type;
 
-// d1[1].src = doc.data().exchange_image;
+// document.getElementById(iido).style.display = "block";
+
+
+// c[1].src = doc.data().exchange_image;
 // d2_2[7].innerHTML += doc.data().exchange_type;
 //alert(doc.data().exchange_description);
 //  d2_2[1].innerHTML += doc.data().exchange_description;   
-i_offer++;
-
+//i_offer++;
 }
-
 
 function renderUserData(doc){
     uname.innerHTML += doc.data().user_fullName;
@@ -75,7 +115,6 @@ function renderUserData(doc){
 db_product.collection("user").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {        
         if(doc.id==user_id){
-//            console.log(doc.data());
             renderUserData(doc);
         }
     });
@@ -83,23 +122,30 @@ db_product.collection("user").get().then((snapshot) => {
 
 
 db_product.collection("posting").where('user_id', '==', user_id).get().then((snapshot) => {
+//db_product.collection("posting").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderDashboardProduct(doc);
-        console.log(doc.data())       
-        
-//        doc.data().offersArray
+//       console.log(doc.data())       
+       var offer_arr=doc.data().offersArray;
+       if(offer_arr!=undefined)
+       {
+//        console.log(offer_arr[0]);
+//        console.log(offer_arr.length);
 
-        // for(let i=0;i<doc.data().offersArray.length;i++){
-        //     db_product.collection("offer").get().then((snapshot) => {
-        //         snapshot.docs.forEach(doc => {
-        //             if(doc.id==(doc.data().offersArray[i])){
-        //                 renderDashboardOffer(doc);
-        //                 //            console.log(doc.data())                    
-        //             }
-        //         });
-        //     document.getElementById("offer-card-0").style.display = "none";
-        // });
-        // }
+         for(let i=0;i<offer_arr.length;i++){
+        //     console.log(offer_arr[i])
+//        db_product.collection("offer").where('user_id', '==', user_id).get().then((snapshot) => {
+            db_product.collection("offer").get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                     if(doc.id==(offer_arr[i])){
+                        renderDashboardOffer(doc);
+//                        console.log(doc.data())                    
+                    }
+                });
+//            document.getElementById("offer-card-0").style.display = "none";
+        });
+        }
+    }
 
 
  //       console.log(doc.data())
