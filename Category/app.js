@@ -15,18 +15,18 @@ const rent = document.querySelector('#rent');
 const exchange = document.querySelector('#exchange');
 
 
-const category = 'clothes';
+// const category = 'clothes';
+const category=localStorage.getItem("category")
+console.log(localStorage.getItem("category"));
 
-//.where('product_category', '==', category)
-db.collection('posting').get().then((snapshot) => {
-
+db.collection('posting').where('product_category', '==',category).get().then((snapshot) => {
     // create fragment to contain all products
     const fragment = document.createDocumentFragment();
-
+console.log(snapshot.docs);
     snapshot.docs.forEach(doc => {
         const p_card = document.createElement('div');
-        p_card.className = 'card my-5 rounded';
-        p_card.setAttribute('style', 'width: 400px;');
+        p_card.className = 'card my-5';
+        p_card.setAttribute('style', 'width: 400px; border-radius: 50px 20px;');
         p_card.setAttribute('data-id', doc.id);
 
         // get product processes
@@ -35,7 +35,7 @@ db.collection('posting').get().then((snapshot) => {
             processes += `[<span class="bg-light">${process}</span>] `;
 
         p_card.innerHTML = `
-        <img class="card-img-top" height="400px"
+        <img class="card-img-top" height="300px" style="    border-radius: 50px 20px;"
             src="${doc.data().product_image}"
             alt="${doc.data().product_category}">
         <hr class="mx-4">
@@ -86,11 +86,11 @@ function get_data_id(element) {
         return get_data_id(element.parentElement);
 }
 
-document.querySelector('button').onclick = (e) => {
+document.querySelector('#btnFind').onclick = (e) => {
     e.preventDefault();
 
-    //.where('product_category', '==', category)
-    db.collection('posting').get().then((snapshot) => {
+    
+    db.collection('posting').where('product_category','==', category).get().then((snapshot) => {
 
         let docs = snapshot.docs;
 

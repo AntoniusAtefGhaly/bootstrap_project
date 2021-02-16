@@ -71,16 +71,26 @@ function get_data_id(element) {
 
 //-------- Category ----------
 
+
 var category = document.getElementById("category");
 
-for (let i = 0; i < category.querySelectorAll("button").length; i++) {
-  category.querySelectorAll("button")[i].onclick = function (e) {
-    localStorage.setItem("category", e.target.id);
-    console.log(localStorage.getItem("category"));
-    location.assign('../Category/category.html');
-  }
-
+function get_cat_id(element) {
+  if (element.getAttribute('id') != null)
+    return element.getAttribute('id');
+  else
+    return get_cat_id(element.parentElement);
 }
+
+  for (let i = 0; i < category.querySelectorAll("button").length; i++) {
+    category.querySelectorAll("button")[i].onclick = function (e) {
+      // if (e.target.nodeName === 'BUTTON')
+        localStorage.setItem("category", get_cat_id(e.target));
+      console.log(e.target);
+      console.log(localStorage.getItem("category"));
+      location.assign('../Category/category.html');
+    }
+
+  }
 
 //--------Search----------
 // here we will save the data of the search when we click on the button
