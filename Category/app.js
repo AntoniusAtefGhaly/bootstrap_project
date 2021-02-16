@@ -72,9 +72,9 @@ function product_clicked(e) {
         return;
     }
     else {
-        localStorage.setItem('product_id', get_data_id(e.target));
-        console.log(localStorage.getItem('product_id'));
-        //location.assign('/product.html');
+        localStorage.setItem('ProductID', get_data_id(e.target));
+        console.log(localStorage.getItem('ProductID'));
+        location.assign('../ProductDetails/Product Details.html');
     }
 }
 
